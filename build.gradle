@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'me.xenforu'
+group 'me.brenann'
 version '1.0'
 
 sourceCompatibility = 1.8
@@ -12,17 +12,11 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
     compile 'com.github.jonatino:Java-Memory-Manipulation:2.1.2'
 }
 
 jar {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-    }
-    manifest {
-        attributes(
-                'Main-Class': 'Start'
-        )
     }
 }
