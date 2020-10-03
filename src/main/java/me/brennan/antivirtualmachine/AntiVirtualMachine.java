@@ -13,14 +13,13 @@ public enum AntiVirtualMachine {
     INSTANCE;
 
     private Process currentProcess;
-    private CheckManager checkManager;
 
     public void start() {
         final int pid = Kernel32.INSTANCE.GetCurrentProcessId();
         currentProcess = Processes.byId(pid);
         currentProcess.initModules();
-        checkManager = new CheckManager();
 
+        final CheckManager checkManager = new CheckManager();
         checkManager.runChecks();
     }
 

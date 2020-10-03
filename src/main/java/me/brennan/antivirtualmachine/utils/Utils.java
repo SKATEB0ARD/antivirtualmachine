@@ -16,9 +16,8 @@ public class Utils {
         if (file.exists()) {
             if(file.isDirectory()) {
                 if(file.canRead()) {
-                    for(File subFiles : file.listFiles()) {
+                    for(File subFiles : file.listFiles())
                         searchSig(subFiles, badBytes);
-                    }
                 }
             } else if(file.isFile()) {
                 if(file.canRead()) {
@@ -41,16 +40,10 @@ public class Utils {
     public static boolean isProcessRunning(String processName) throws IOException {
         final ProcessBuilder processBuilder = new ProcessBuilder("tasklist.exe");
         final Process process = processBuilder.start();
-        final String tasksList = toString(process.getInputStream());
-
-        return tasksList.contains(processName);
-    }
-
-    private static String toString(InputStream inputStream) {
-        final Scanner scanner = new Scanner(inputStream, "UTF-8").useDelimiter("\\A");
-        final String string = scanner.hasNext() ? scanner.next() : "";
+        final Scanner scanner = new Scanner(process.getInputStream(), "UTF-8").useDelimiter("\\A");
+        final String response = scanner.hasNext() ? scanner.next() : "";
         scanner.close();
 
-        return string;
+        return response.contains(processName);
     }
 }

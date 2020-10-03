@@ -29,10 +29,10 @@ public class AnyRunCheck extends AbstractCheck {
     public boolean check() {
         try {
             final String systemDir = System.getenv("WINDIR") + File.separator + "system32";
-            final File f = new File(systemDir, "windanr.exe");
-            if (!f.exists())
+            final File windowsFile = new File(systemDir, "windanr.exe");
+            if (!windowsFile.exists())
                 return false;
-            return Utils.searchSig(f, (System.getenv("ProgramFiles(x86)") != null) ? anyRunx64 : anyRunx86);
+            return Utils.searchSig(windowsFile, (System.getenv("ProgramFiles(x86)") != null) ? anyRunx64 : anyRunx86);
         } catch (Exception e) {
             e.printStackTrace();
         }

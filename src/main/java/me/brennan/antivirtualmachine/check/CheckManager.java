@@ -20,6 +20,7 @@ public class CheckManager {
         checks.add(new SandboxieCheck());
         checks.add(new MacAddressCheck());
         checks.add(new RegistryCheck());
+        checks.add(new DebuggerUnmanagedCheck());
     }
 
     public void runChecks() {
